@@ -2,9 +2,45 @@ use std::net::IpAddr;
 use std::net::Ipv4Addr;
 
 use bevy::prelude::*;
+use bevy_quinnet::client::QuinnetClientPlugin;
 use bevy_quinnet::client::{
     certificate::CertificateVerificationMode, connection::ConnectionConfiguration, Client,
 };
+
+use crate::app::states::*;
+
+#[derive(Component)]
+pub struct ClientPlugin;
+
+impl Plugin for ClientPlugin {
+    fn build(&self, app: &mut App) {
+        app.add_plugins(QuinnetClientPlugin::default());
+        app.add_systems(
+            OnEnter(ServerConnectionState::NotHosting),
+            (
+                create_client_connection,
+                // handle_server_messages // handles messages sent from the server to the client
+            )
+                .chain(),
+        );
+        app.add_systems(
+            OnEnter(ServerConnectionState::Hosting),
+            (
+                create_client_connection,
+                // handle_server_messages // handles messages sent from the server to the client
+            )
+                .chain(),
+        );
+        app.add_systems(
+            OnEnter(ServerConnectionState::NoConnection),
+            (
+                close_client_connection,
+                // handle_server_messages // handles messages sent from the server to the client
+            )
+                .chain(),
+        );
+    }
+}
 
 pub fn create_client_connection(mut client: ResMut<Client>) {
     client

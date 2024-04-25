@@ -16,16 +16,9 @@ pub enum ClientGameState {
 }
 
 #[derive(Clone, Debug, Default, Eq, Hash, PartialEq, Reflect, States, Component)]
-pub enum ClientConnectionState {
+pub enum ServerConnectionState {
     #[default]
     NoConnection,
     NotHosting,
     Hosting,
 }
-
-// #[derive(Clone, Debug, Default, Eq, Hash, PartialEq, Reflect, States, Component)]
-// pub enum ClientPauseState {
-//     #[default]
-//     NotPaused,
-//     Paused,
-// }

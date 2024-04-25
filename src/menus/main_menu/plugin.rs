@@ -1,6 +1,6 @@
 use bevy::{app::AppExit, prelude::*};
 
-use crate::app::states::{ClientAppState, ClientConnectionState, ClientGameState};
+use crate::app::states::{ClientAppState, ClientGameState, ServerConnectionState};
 
 #[derive(Component)]
 pub struct FpsText;
@@ -28,21 +28,10 @@ pub enum MenuButtonAction {
 
 fn remove_main_menu(
     mut commands: Commands,
-    mut text_query: Query<Entity, With<Text>>,
-    mut camera_query: Query<Entity, With<Camera2d>>,
-    mut button_query: Query<Entity, With<Button>>,
+    mut query: Query<Entity, Or<(With<Text>, With<Camera2d>, With<Button>)>>,
 ) {
-    for entity in text_query.iter_mut() {
-        println!("despawning {:?} text", entity);
-        commands.entity(entity).despawn();
-    }
-
-    for entity in camera_query.iter_mut() {
-        println!("despawning {:?} camera", entity);
-        commands.entity(entity).despawn();
-    }
-    for entity in button_query.iter_mut() {
-        println!("despawning {:?} entity", entity);
+    for entity in query.iter_mut() {
+        println!("despawning entity");
         commands.entity(entity).despawn();
     }
 }
@@ -190,7 +179,7 @@ fn menu_action(
     mut app_exit_events: EventWriter<AppExit>,
     mut next_app_state: ResMut<NextState<ClientAppState>>,
     mut next_game_state: ResMut<NextState<ClientGameState>>,
-    mut next_connection_state: ResMut<NextState<ClientConnectionState>>,
+    mut next_connection_state: ResMut<NextState<ServerConnectionState>>,
 ) {
     for (interaction, menu_button_action) in &interaction_query {
         if *interaction == Interaction::Pressed {
@@ -198,7 +187,7 @@ fn menu_action(
                 MenuButtonAction::Singleplayer => {
                     next_app_state.set(ClientAppState::GameMode);
                     next_game_state.set(ClientGameState::InGame);
-                    next_connection_state.set(ClientConnectionState::Hosting);
+                    next_connection_state.set(ServerConnectionState::Hosting);
                 }
                 MenuButtonAction::Multiplayer => {
                     println!("hi there, not implemented")
