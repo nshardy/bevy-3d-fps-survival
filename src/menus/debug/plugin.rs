@@ -1,7 +1,8 @@
 use bevy::prelude::*;
 use bevy_inspector_egui::{self, quick::StateInspectorPlugin};
 
-use crate::app::states::{ClientAppState, ClientGameState, ServerConnectionState};
+use crate::app::states::{ClientAppState, ClientGameState};
+use crate::net::states::ServerConnectionState;
 
 #[derive(Component)]
 pub struct CustomInspectorPlugin;

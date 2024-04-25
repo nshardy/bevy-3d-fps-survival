@@ -5,6 +5,7 @@ use menus::{
     debug::plugin::CustomInspectorPlugin, loading_assets::plugin::LoadingUIPlugin,
     main_menu::plugin::MainMenuUIPlugin,
 };
+use net::states::*;
 use net::{client::*, server::ServerPlugin};
 
 mod app;

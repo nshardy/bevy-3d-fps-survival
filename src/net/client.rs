@@ -2,12 +2,12 @@ use std::net::IpAddr;
 use std::net::Ipv4Addr;
 
 use bevy::prelude::*;
-use bevy_quinnet::client::QuinnetClientPlugin;
 use bevy_quinnet::client::{
     certificate::CertificateVerificationMode, connection::ConnectionConfiguration, Client,
+    QuinnetClientPlugin,
 };
 
-use crate::app::states::*;
+use super::states::ServerConnectionState;
 
 #[derive(Component)]
 pub struct ClientPlugin;

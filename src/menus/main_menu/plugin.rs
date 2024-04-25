@@ -1,6 +1,7 @@
 use bevy::{app::AppExit, prelude::*};
 
-use crate::app::states::{ClientAppState, ClientGameState, ServerConnectionState};
+use crate::app::states::{ClientAppState, ClientGameState};
+use crate::net::states::ServerConnectionState;
 
 #[derive(Component)]
 pub struct FpsText;
