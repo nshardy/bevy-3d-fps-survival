@@ -7,6 +7,8 @@ use bevy_quinnet::client::{
     QuinnetClientPlugin,
 };
 
+use crate::ClientGameState;
+
 use super::states::ServerConnectionState;
 
 #[derive(Component)]
@@ -16,15 +18,7 @@ impl Plugin for ClientPlugin {
     fn build(&self, app: &mut App) {
         app.add_plugins(QuinnetClientPlugin::default());
         app.add_systems(
-            OnEnter(ServerConnectionState::NotHosting),
-            (
-                create_client_connection,
-                // handle_server_messages // handles messages sent from the server to the client
-            )
-                .chain(),
-        );
-        app.add_systems(
-            OnEnter(ServerConnectionState::Hosting),
+            OnEnter(ClientGameState::InGame),
             (
                 create_client_connection,
                 // handle_server_messages // handles messages sent from the server to the client

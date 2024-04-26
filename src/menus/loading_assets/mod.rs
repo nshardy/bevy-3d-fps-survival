@@ -1,1 +1,1 @@
-pub mod plugin;
+pub mod loading_menu_plugin;

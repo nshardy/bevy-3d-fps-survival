@@ -1,7 +1,7 @@
 use bevy::{app::AppExit, prelude::*};
 
-use crate::app::states::{ClientAppState, ClientGameState};
-use crate::net::states::ServerConnectionState;
+use crate::app::states::ClientAppState;
+use crate::net::states::{ClientGameState, ServerConnectionState};
 
 #[derive(Component)]
 pub struct FpsText;
@@ -32,7 +32,6 @@ fn remove_main_menu(
     mut query: Query<Entity, Or<(With<Text>, With<Camera2d>, With<Button>)>>,
 ) {
     for entity in query.iter_mut() {
-        println!("despawning entity");
         commands.entity(entity).despawn();
     }
 }

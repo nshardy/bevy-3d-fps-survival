@@ -2,8 +2,9 @@ use bevy::prelude::*;
 
 use app::states::*;
 use menus::{
-    debug::plugin::CustomInspectorPlugin, loading_assets::plugin::LoadingUIPlugin,
-    main_menu::plugin::MainMenuUIPlugin,
+    debug::debug_menu_plugin::CustomInspectorPlugin,
+    loading_assets::loading_menu_plugin::LoadingUIPlugin,
+    main_menu::main_menu_plugin::MainMenuUIPlugin,
 };
 use net::states::*;
 use net::{client::*, server::ServerPlugin};

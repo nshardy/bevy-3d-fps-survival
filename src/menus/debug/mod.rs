@@ -1,1 +1,1 @@
-pub mod plugin;
+pub mod debug_menu_plugin;
