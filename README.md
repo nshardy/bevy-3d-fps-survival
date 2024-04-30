@@ -10,3 +10,6 @@ bevy = { version = "0.13.2", features = ["default_font"] }
 bevy-inspector-egui = "0.24.0"
 bevy_quinnet = "0.7.0"
 ```
+
+Activity:
+![Alt](https://repobeats.axiom.co/api/embed/493d49b60b85ea9d249e185c31673e257f1bc782.svg "Repobeats analytics image")
